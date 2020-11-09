@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_info"
+        android:icon="@drawable/ic_twotone_info_24"
+        android:title="@string/menu_info" />
+
+    <item
+        android:id="@+id/navigation_summary"
+        android:icon="@drawable/ic_twotone_home_24"
+    android:title="@string/menu_home" />
+
+    <item
+        android:id="@+id/historyFragment"
+        android:icon="@drawable/ic_twotone_assignment_24"
+        android:title="@string/menu_history" />
+</menu>

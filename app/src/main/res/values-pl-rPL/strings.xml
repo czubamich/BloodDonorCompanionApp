@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blood Donor Companion App</string>
+    <string name="menu_home">Podsumowanie</string>
+    <string name="title_summary">Podsumowanie</string>
+    <string name="menu_history">Historia</string>
+    <string name="menu_info">Informacje</string>
+    <string name="text_greeting">Hej %s,</string>
+    <string name="text_greeting2">jak się dzisiaj masz?</string>
+    <string name="donationtype_whole">Krew Pełna</string>
+    <string name="donationtype_plasma">Osocze</string>
+    <string name="donationtype_platelets">Krwinki</string>
+    <string name="donationtype_disqualified">Dyskwalifikacja</string>
+    <string name="control_expand">Rozwiń</string>
+    <string name="control_shrink">Zwiń</string>
+    <string name="user_gender_male">Mężczyzna</string>
+    <string name="user_gender_female">Kobieta</string>
+    <string name="donationtype_unknown">Nieznany</string>
+    <string name="armtype_right">Prawa</string>
+    <string name="armtype_left">Lewa</string>
+    <string name="armtype_unknown">Nieznany</string>
+    <string name="text_donated">Łącznie oddałeś</string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/greetWelcomeFragment">
+    <fragment
+        android:id="@+id/greetWelcomeFragment"
+        android:name="com.mczuba.blooddonorcompanion.vm.greeting.GreetWelcomeFragment"
+        android:label="greeting_fragment"
+        tools:layout="@layout/fragment_greet_welcome" >
+        <action
+            android:id="@+id/action_greetingFragment_to_greetMakeProfileFragment"
+            app:destination="@id/GreetRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/GreetRegisterFragment"
+        android:name="com.mczuba.blooddonorcompanion.vm.greeting.GreetRegisterFragment"
+        android:label="greet_make_profile_fragment"
+        tools:layout="@layout/fragment_greet_register" >
+        <action
+            android:id="@+id/action_greetMakeProfileFragment_to_greetUserFragment"
+            app:destination="@id/greetFinalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/greetFinalFragment"
+        android:name="com.mczuba.blooddonorcompanion.vm.greeting.GreetFinalFragment"
+        android:label="greet_user_fragment"
+        tools:layout="@layout/fragment_greet_final" />
+</navigation>

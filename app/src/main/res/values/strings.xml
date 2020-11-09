@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Blood Donor Companion App</string>
+
+    //Navigation
+    <string name="menu_home">Home</string>
+    <string name="title_summary">Summary</string>
+    <string name="menu_history">History</string>
+    <string name="menu_info">Information</string>
+    //Text
+    <string name="text_donated">You have already donated</string>
+    //Text with params
+    <string name="text_greeting">Hello %s,</string>
+    <string name="text_greeting2">how are you today?</string>
+
+    //Plurals
+    <plurals name="plural_daysLeft">
+        <!--
+             As a developer, you should always supply "one" and "other"
+             strings. Your translators will know which strings are actually
+             needed for their language. Always include %d in "one" because
+             translators will need to use %d for languages where "one"
+             doesn't mean 1 (as explained above).
+          -->
+        <item quantity="one">%d day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
+
+
+    //Number formats
+
+    <string name="format_any" translatable="false">%s</string>
+    <string name="format_number" translatable="false">%,d</string>
+    <string name="donationtype_whole">Whole Blood</string>
+    <string name="donationtype_plasma">Plasma</string>
+    <string name="donationtype_platelets">Platelets</string>
+    <string name="donationtype_disqualified">Disqualified</string>
+    <string name="control_expand">Expand</string>
+    <string name="control_shrink">Shrink</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_gender_male">Male</string>
+    <string name="user_gender_female">Female</string>
+    <string name="pref_currentuser_key" translatable="false">CurrentUser</string>
+    <string name="pref_donorprefs" translatable="false">DonorPrefs</string>
+    <string name="donationtype_unknown">Unknown</string>
+    <string name="armtype_right">Right</string>
+    <string name="armtype_left">Left</string>
+    <string name="armtype_unknown">Unknown</string>
+</resources>
