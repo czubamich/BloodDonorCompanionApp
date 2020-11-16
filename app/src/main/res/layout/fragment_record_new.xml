@@ -24,7 +24,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/base_margin"
+                android:layout_marginHorizontal="@dimen/base_margin"
                 app:strokeColor="@color/colorPrimaryDark"
                 app:strokeWidth="1dp">
 
@@ -55,8 +55,6 @@
                             android:layout_marginTop="8dp"
                             android:hint="Donation Type"
                             app:startIconDrawable="@drawable/blood_bag">
-                            >
-
                             <AutoCompleteTextView
                                 android:id="@+id/editDonationType"
                                 android:layout_width="match_parent"
@@ -71,7 +69,6 @@
                             android:layout_marginTop="8dp"
                             android:hint="Date"
                             app:startIconDrawable="@drawable/calendar_star">
-
                             <AutoCompleteTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -142,8 +139,8 @@
                                     android:layout_weight="1"
                                     android:hint="Arm"
                                     app:startIconDrawable="@drawable/hand_right">
-
                                     <AutoCompleteTextView
+                                        android:ellipsize="start"
                                         android:id="@+id/editUsedArm"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
@@ -156,15 +153,13 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="Duration"
                                     app:placeholderText="5-15"
                                     app:startIconDrawable="@drawable/timer_outline"
                                     app:suffixText="min">
-
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:inputType="numberDecimal|numberSigned"
+                                        android:inputType="number"
                                         android:text="@={viewmodel.donation.duration}" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
@@ -204,8 +199,8 @@
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:text="@={viewmodel.donation.hemoglobin}"
-                                        android:inputType="numberSigned|numberDecimal" />
+                                        android:inputType="numberDecimal"
+                                        android:text="@={viewmodel.donation.hemoglobin}" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 
@@ -222,13 +217,12 @@
                                     android:layout_weight="1"
                                     android:hint="Diastolic"
                                     app:placeholderText="60-90"
-                                    app:startIconDrawable="@drawable/diabetes"
                                     app:suffixText="mmHg">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:inputType="numberSigned|numberDecimal"
+                                        android:inputType="number"
                                         android:text="@={viewmodel.donation.diastolic}" />
                                 </com.google.android.material.textfield.TextInputLayout>
                                 <!-- Hemoglobin -->
@@ -239,13 +233,11 @@
                                     android:layout_weight="1"
                                     android:hint="Systolic"
                                     app:placeholderText="80-120"
-                                    app:startIconDrawable="@drawable/diabetes"
                                     app:suffixText="mmHg">
-
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:inputType="numberSigned|numberDecimal"
+                                        android:inputType="number"
                                         android:text="@={viewmodel.donation.systolic}" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>

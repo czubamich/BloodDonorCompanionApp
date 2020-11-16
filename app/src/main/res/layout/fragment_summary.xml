@@ -84,32 +84,38 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <com.google.android.material.chip.ChipGroup
-                                    android:layout_width="match_parent"
+                                    android:id="@+id/summary_chipgroup"
+                                    android:checkedButton="@={viewmodel.checkedBtnObs}"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     app:singleLine="true"
                                     app:selectionRequired="true"
                                     app:singleSelection="true">
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/summary_chiptotal"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.MaterialComponents.Chip.Choice"
                                         android:checked="true"
-                                        android:text="Total"/>
+                                        android:text="@string/donation_total"/>
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/summary_chipwhole"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.MaterialComponents.Chip.Choice"
-                                        android:text="Whole"/>
+                                        android:text="@string/donation_whole"/>
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/summary_chipplasma"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.MaterialComponents.Chip.Choice"
-                                        android:text="Plasma"/>
+                                        android:text="@string/donation_plasma"/>
                                     <com.google.android.material.chip.Chip
+                                        android:id="@+id/summary_chipplatelets"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         style="@style/Widget.MaterialComponents.Chip.Choice"
-                                        android:text="Platelets"/>
+                                        android:text="@string/donation_platelets"/>
                                 </com.google.android.material.chip.ChipGroup>
                             </ScrollView>
                             <!-- Donated Total -->
@@ -128,7 +134,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:layout_marginLeft="24dp"
-                                    android:text="1,350"
+                                    android:text="@{@string/format_number(viewmodel.currentSummary.total)}"
+                                    tools:text="450"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                                     android:textColor="@color/colorPrimary"
                                     />
@@ -159,7 +166,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:layout_marginLeft="24dp"
-                                    android:text="450"
+                                    android:text="-"
+                                    tools:text="450"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                                     android:textColor="@color/colorPrimary"/>
                                 <TextView
@@ -188,8 +196,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:layout_marginLeft="24dp"
-
-                                    android:text="40"
+                                    tools:text="11"
+                                    android:text="@{@string/format_number(viewmodel.daysLeft)}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                                     android:textColor="@color/colorPrimary"
                                     />
@@ -197,7 +205,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:text=" days"
+                                    tools:text="days"
+                                    android:text="@{@plurals/plural_daysLeft(viewmodel.daysLeft)}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                                     android:textColor="?android:attr/textColorSecondary"
                                     />
@@ -255,6 +264,37 @@
                                 style="?attr/borderlessButtonStyle"
                                 />
                         </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Statistics -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/base_margin"
+                    android:layout_marginHorizontal="@dimen/base_margin"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/colorPrimaryDark">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+                            <!-- Title, secondary and supporting text -->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Statistics"
+                                android:textAppearance="?attr/textAppearanceHeadline6"/>
+                            <com.anychart.AnyChartView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

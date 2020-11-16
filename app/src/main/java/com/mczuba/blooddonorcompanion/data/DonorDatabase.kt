@@ -27,7 +27,7 @@ abstract class DonorDatabase: RoomDatabase() {
                     context.applicationContext,
                     DonorDatabase::class.java,
                     "user_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }

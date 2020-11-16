@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.mczuba.blooddonorcompanion.R
 import com.mczuba.blooddonorcompanion.data.Donation
 import com.mczuba.blooddonorcompanion.databinding.FragmentHistoryBinding
 
@@ -31,18 +29,18 @@ class HistoryFragment : Fragment() {
 
         var donationData = donationListToDonationData(ArrayList<Donation>())
 
+
         val donationObserver = Observer<List<Donation>> { donations ->
             val donations = viewModel.donations
 
             if(!donations.value!!.isEmpty())
-                binding.root.findViewById<View>(R.id.fragment_history_empty).visibility = View.INVISIBLE
+                binding.fragmentHistoryEmpty.visibility = View.INVISIBLE
 
             donationData = donationListToDonationData(ArrayList(donations.value))
             val adapter = DonationAdapter(requireContext(), donationData)
 
-            val recyclerView = binding.root.findViewById<RecyclerView>(R.id.rv_history)
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
+            binding.rvHistory.adapter = adapter
+            binding.rvHistory.layoutManager = GridLayoutManager(requireContext(), 1)
 
         }
 

@@ -21,6 +21,8 @@ class SummaryFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
 
+        //binding.summaryChipgroup.
+
         return binding.root
     }
 

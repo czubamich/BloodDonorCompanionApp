@@ -1,23 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Blood Donor Companion App</string>
+    //Navigation
     <string name="menu_home">Podsumowanie</string>
     <string name="title_summary">Podsumowanie</string>
     <string name="menu_history">Historia</string>
     <string name="menu_info">Informacje</string>
+
+    //Text
+    <string name="text_donated">Łącznie oddałeś/aś</string>
+
+    //Text with params
     <string name="text_greeting">Hej %s,</string>
     <string name="text_greeting2">jak się dzisiaj masz?</string>
-    <string name="donationtype_whole">Krew Pełna</string>
-    <string name="donationtype_plasma">Osocze</string>
-    <string name="donationtype_platelets">Krwinki</string>
-    <string name="donationtype_disqualified">Dyskwalifikacja</string>
+
+    //Plurals
+    <plurals name="plural_daysLeft">
+        <!--
+             As a developer, you should always supply "one" and "other"
+             strings. Your translators will know which strings are actually
+             needed for their language. Always include %d in "one" because
+             translators will need to use %d for languages where "one"
+             doesn't mean 1 (as explained above).
+          -->
+        <item quantity="one">dzień</item>
+        <item quantity="few">dni</item>
+        <item quantity="many">dni</item>
+    </plurals>
+
+    //Number formats
+    <string name="format_any" translatable="false">%s</string>
+    <string name="format_number" translatable="false">%,d</string>
+
+    //Arrays
+    <string name="donation_total">Łącznie</string>
+    <string name="donation_unknown">Nieznany</string>
+    <string name="donation_whole">Pełna</string>
+    <string name="donation_plasma">Osocze</string>
+    <string name="donation_platelets">Krwinki</string>
+
+    <string-array name="donation_array">
+        <item>Krew pełna</item>
+        <item>@string/donation_plasma</item>
+        <item>@string/donation_platelets</item>
+        <item>Dyskwalifikacja</item>
+    </string-array>
+
+    <string name="arm_string">Ramię</string>
+    <string-array name="arm_array">
+        <item>Prawe</item>
+        <item>Lewe</item>
+        <item>Nieznane</item>
+    </string-array>
+
+    <string name="gender_string">Płeć</string>
+    <string-array name="gender_array">
+        <item>Mężczyzna</item>
+        <item>Kobieta</item>
+    </string-array>
+
+    <string name="bloodtype">Grupa krwi</string>
+
+    //Controls
     <string name="control_expand">Rozwiń</string>
     <string name="control_shrink">Zwiń</string>
-    <string name="user_gender_male">Mężczyzna</string>
-    <string name="user_gender_female">Kobieta</string>
-    <string name="donationtype_unknown">Nieznany</string>
-    <string name="armtype_right">Prawa</string>
-    <string name="armtype_left">Lewa</string>
-    <string name="armtype_unknown">Nieznany</string>
-    <string name="text_donated">Łącznie oddałeś</string>
 </resources>

@@ -10,19 +10,19 @@ class DonationData(val context: Context, val donation: Donation, val header: Boo
 {
     fun getType() = donation.run{
         when(type){
-            Donation.DonationType.WHOLE -> context.getString(R.string.donationtype_whole)
-            Donation.DonationType.PLASMA -> context.getString(R.string.donationtype_plasma)
-            Donation.DonationType.PLATELETS -> context.getString(R.string.donationtype_platelets)
-            Donation.DonationType.DISQUALIFIED -> context.getString(R.string.donationtype_disqualified)
-            else -> context.getString(R.string.donationtype_unknown)
+            Donation.DonationType.WHOLE -> context.resources.getStringArray(R.array.donation_array)[0]
+            Donation.DonationType.PLASMA -> context.resources.getStringArray(R.array.donation_array)[1]
+            Donation.DonationType.PLATELETS -> context.resources.getStringArray(R.array.donation_array)[2]
+            Donation.DonationType.DISQUALIFIED -> context.resources.getStringArray(R.array.donation_array)[3]
+            else -> context.getString(R.string.donation_unknown)
         }
     }
     fun getAmount() = context.getString(R.string.format_number, donation.amount)
     fun getArm() = donation.run{
         when(arm){
-            Donation.ArmType.RIGHT -> context.getString(R.string.armtype_right)
-            Donation.ArmType.LEFT -> context.getString(R.string.armtype_left)
-            else -> context.getString(R.string.armtype_unknown)
+            Donation.ArmType.RIGHT -> context.resources.getStringArray(R.array.arm_array)[0]
+            Donation.ArmType.LEFT -> context.resources.getStringArray(R.array.arm_array)[1]
+            else -> context.resources.getStringArray(R.array.arm_array)[2]
         }
     }
     fun getLocation() = donation.location
@@ -35,7 +35,19 @@ class DonationData(val context: Context, val donation: Donation, val header: Boo
         Donation.DonationType.PLASMA -> context.resources.getColor(R.color.colorPrimaryLight)
         Donation.DonationType.DISQUALIFIED -> context.resources.getColor(R.color.colorBlack)
     }
-    fun getDuration() = context.getString(R.string.format_number, donation.duration)
-    fun getHemoglobin() = context.getString(R.string.format_number, donation.hemoglobin)
-    fun getNote() = donation.note
+    fun getDuration() = donation.duration?.run {
+        context.getString(R.string.format_minutes, this)
+    } ?: "-"
+
+    fun getHemoglobin() = donation.hemoglobin?.run {
+        context.getString(R.string.format_decimal, this)
+    } ?: "-"
+
+    fun getBloodPressure() : String {
+        if(donation.diastolic==null || donation.systolic==null)
+            return "-"
+        else
+            return context.getString(R.string.format_pressure, donation.diastolic, donation.systolic)
+    }
+        fun getNote() = donation.note
 }

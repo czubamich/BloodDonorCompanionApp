@@ -23,7 +23,8 @@ interface UserDao {
     @Query("SELECT * FROM donation_table WHERE donorId = :userId ORDER BY date ASC")
     suspend fun readAllUserDonations(userId: Int) : List<Donation>
 
-    @Query("SELECT type, SUM(amount) AS total, MAX(date) AS newest,AVG(hemoglobin) AS averageHemoglobin,  AVG(duration) AS averageDuration FROM donation_table WHERE donorId = :userId GROUP BY type")
+    @Query(
+        "SELECT type, SUM(amount) AS total, MAX(date) AS newest,AVG(hemoglobin) AS averageHemoglobin,  AVG(duration) AS averageDuration FROM donation_table WHERE donorId = :userId GROUP BY type")
     suspend fun getUserDonationSummaryByType(userId: Int) : List<DonationSummary>
 
     @Query("SELECT NULL as type, SUM(amount) AS total, MAX(date) AS newest,AVG(hemoglobin) AS averageHemoglobin,  AVG(duration) AS averageDuration FROM donation_table WHERE donorId = :userId")

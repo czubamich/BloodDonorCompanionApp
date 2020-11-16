@@ -28,6 +28,20 @@ class NewRecordViewModel(application: Application) : AndroidViewModel(applicatio
         _openDatePicker.value = true
     }
 
+    fun setDonationType(type: Donation.DonationType) {
+        donation.setType(type)
+        donation.setAmount( when(type) {
+            Donation.DonationType.WHOLE -> 450
+            Donation.DonationType.PLASMA -> 600
+            Donation.DonationType.PLATELETS -> 500
+            else -> 0
+        })
+    }
+
+    fun setArmType(type: Donation.ArmType) {
+        donation.setArm(type)
+    }
+
     fun click() {
         viewModelScope.launch {
             repository.addDonation(donation.getDonation())

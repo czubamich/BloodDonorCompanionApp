@@ -2,26 +2,45 @@ package com.mczuba.blooddonorcompanion.vm.greeting
 
 import android.app.Application
 import android.content.Context
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.hadilq.liveevent.LiveEvent
 import com.mczuba.blooddonorcompanion.R
 import com.mczuba.blooddonorcompanion.data.User
 import com.mczuba.blooddonorcompanion.util.InjectorUtils
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 class GreetRegisterViewModel(application: Application) : AndroidViewModel(application) {
-    private val _name = MutableLiveData("")
-    private val _date = MutableLiveData<Date>()
-    private val _gender = MutableLiveData(User.Gender.Male)
-    private val _bloodtype = MutableLiveData(User.BloodType.Unknown)
 
-    val name: LiveData<String> = _name
-    val date: LiveData<String> = _name
-    val gender: LiveData<String> = _name
-    val bloodtype: LiveData<String> = _name
+    private val _completeState = LiveEvent<Boolean>()
+    private val _openDatePicker = LiveEvent<Boolean>()
+
+    val completeState: LiveData<Boolean> = _completeState
+    val openDatePicker: LiveData<Boolean> = _openDatePicker
+    val name = MutableLiveData("")
+    val bloodType = MutableLiveData(User.BloodType.Aplus)
+    val gender = MutableLiveData(User.Gender.Male)
+    val birthday = MutableLiveData(Date())
+
+    fun pickDate() {
+        _openDatePicker.value = true
+    }
+    val formattedDate = Transformations.map(birthday) {
+        SimpleDateFormat("EE, d MMM yyy").format(it)
+    }
+    fun setNewDateTime(year: Int, month: Int, dayOfMonth: Int) {
+        birthday.postValue(Date(year - 1900, month, dayOfMonth))
+        _openDatePicker.value = false
+    }
+
+    fun setBloodType(type: User.BloodType) {
+        bloodType.postValue(type)
+    }
+
+    fun setGender(type: User.Gender) {
+        gender.postValue(type)
+    }
 
     fun submit()
     {
@@ -33,9 +52,7 @@ class GreetRegisterViewModel(application: Application) : AndroidViewModel(applic
                 commit()
             }
 
-            val cal = Calendar.getInstance()
-            cal.set(1998,2,5)
-            val user = User(0, "Adam", cal.time, User.Gender.Male, User.BloodType.Aplus);
+            val user = User(0, name.value!!, birthday.value!!, gender.value!!, bloodType.value!!);
             if(repo.checkUserExists(user.userId))
                 repo.updateUser(user)
             else
