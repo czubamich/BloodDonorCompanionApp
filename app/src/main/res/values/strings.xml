@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Blood Donor Companion App</string>
+    <string name="app_name" translatable="false">Blood Donor Companion App</string>
 
     //Navigation
     <string name="menu_home">Home</string>
@@ -9,6 +9,8 @@
 
     //Text
     <string name="text_donated">You have already donated</string>
+    <string name="donated_this_year">Donated this year</string>
+    <string name="left_to_next_donation">Left to next donation</string>
 
     //Text with params
     <string name="text_greeting">Hello %s,</string>
@@ -36,16 +38,31 @@
 
     //Arrays
     <string name="donation_total">Total</string>
-    <string name="donation_whole">Whole</string>
+    <string name="donation_whole">Whole Blood</string>
+    <string name="donation_wholeshort">Whole</string>
     <string name="donation_plasma">Plasma</string>
     <string name="donation_platelets">Platelets</string>
+    <string name="donation_disqualified">Platelets</string>
     <string name="donation_unknown">Unknown</string>
+
+    <string name="notification">Notification</string>
+    <string name="notification_none">Disabled</string>
+    <string name="notification_day">One Day earlier</string>
+    <string name="notification_3days">3 Days earlier</string>
+    <string name="notification_week">Week earlier</string>
 
     <string-array name="donation_array">
         <item>@string/donation_whole</item>
         <item>@string/donation_plasma</item>
         <item>@string/donation_platelets</item>
-        <item>Disqualified</item>
+        <item>@string/donation_disqualified</item>
+    </string-array>
+
+    <string-array name="notification_array">
+        <item>@string/notification_week</item>
+        <item>@string/notification_3days</item>
+        <item>@string/notification_day</item>
+        <item>@string/notification_none</item>
     </string-array>
 
     <string name="arm_string">Arm</string>
@@ -53,6 +70,12 @@
         <item>Right</item>
         <item>Left</item>
         <item>Unknown</item>
+    </string-array>
+
+    <string-array name="arm_array_short">
+        <item>R</item>
+        <item>L</item>
+        <item>-</item>
     </string-array>
 
     <string name="gender_string">Gender</string>
@@ -67,10 +90,36 @@
     <string name="control_expand">Expand</string>
     <string name="control_shrink">Shrink</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     //Pref keys
     <string name="pref_currentuser_key" translatable="false">CurrentUser</string>
     <string name="pref_donorprefs" translatable="false">DonorPrefs</string>
+
+    //Donation editor
+    <string name="donation_new">New Donation</string>
+    <string name="donation_edit">Edit Donation</string>
+    <string name="donation_type">Donation Type</string>
+    <string name="donation_date">Date</string>
+    <string name="donation_location">Location</string>
+    <string name="donation_note">Note</string>
+    <string name="donation_arm">Arm</string>
+    <string name="donation_duration">Duration</string>
+    <string name="donation_amount">Amount</string>
+    <string name="donation_hemoglobin">Hemoglobin</string>
+    <string name="donation_diastolic">Diastolic</string>
+    <string name="donation_systolic">Systolic</string>
+    <string name="donation_submit">Submit</string>
+    <string name="donation_submitedit">Apply</string>
+    <string name="history_empty">-Empty-</string>
+
+    //Menu
+    <string name="record_edit">Edit</string>
+    <string name="record_remove">Remove</string>
+
+    //Schedule
+    <string name="donation_scheduletitle">Schedule a Donation</string>
+    <string name="schedule_upcomingtext">Upcoming Planned Donation</string>
+    <string name="schedule_nothingyet">Nothing scheduled for now..</string>
+    <string name="schedule_in">In</string>
+    <string name="schedule_button">Schedule</string>
+    <string name="schedule_buttonremove">Remove</string>
 </resources>

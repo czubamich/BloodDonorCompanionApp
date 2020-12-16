@@ -16,6 +16,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mczuba.blooddonorcompanion.util.InjectorUtils
 import com.mczuba.blooddonorcompanion.vm.BlankFragmentDirections
+import com.mczuba.blooddonorcompanion.vm.SummaryFragmentDirections
+import com.mczuba.blooddonorcompanion.vm.records.HistoryFragmentDirections
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import me.ibrahimsn.lib.SmoothBottomBar
@@ -33,8 +35,12 @@ class MainActivity : AppCompatActivity() {
             R.id.historyFragment -> fab.visibility = View.VISIBLE
             else -> fab.visibility = View.INVISIBLE
         }
+        when (destination.id) {
+            R.id.newRecordFragment -> navView.visibility = View.GONE;
+            R.id.scheduleRecordFragment -> navView.visibility = View.GONE;
+            else -> navView.visibility = View.VISIBLE;
+        }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,7 +57,12 @@ class MainActivity : AppCompatActivity() {
 
         fab = findViewById(R.id.fab)
         fab.setOnClickListener {
-            navController.navigate(R.id.newRecordFragment)
+            when(navController.currentDestination?.id)
+            {
+                R.id.navigation_summary -> navController.navigate(SummaryFragmentDirections.actionNavigationSummaryToNewRecordFragment())
+                R.id.historyFragment ->  navController.navigate(HistoryFragmentDirections.actionHistoryFragmentToNewRecordFragment())
+                else -> navController.navigate(R.id.newRecordFragment)
+            }
         }
 
         val menu = PopupMenu(this@MainActivity, null).menu

@@ -1,9 +1,9 @@
 package com.mczuba.blooddonorcompanion
 
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
-import com.mczuba.blooddonorcompanion.data.DonationDao
 import com.mczuba.blooddonorcompanion.data.DonorDatabase
-import com.mczuba.blooddonorcompanion.data.UserDao
+import com.mczuba.blooddonorcompanion.data.models.DonationDao
+import com.mczuba.blooddonorcompanion.data.models.UserDao
 import com.mczuba.blooddonorcompanion.util.TestUtils
 import org.hamcrest.Matchers.equalTo
 import org.junit.After

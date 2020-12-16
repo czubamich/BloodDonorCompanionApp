@@ -15,6 +15,18 @@ class FoldableCardHelper(val context: Context, val layout: View, val card: CardV
         }
     }
 
+    fun fold()
+    {
+        folded = true;
+        setupViews()
+    }
+
+    fun unfold()
+    {
+        folded = false;
+        setupViews()
+    }
+
     private fun setupViews() {
         layout.visibility = if (folded) View.GONE else View.VISIBLE
     }

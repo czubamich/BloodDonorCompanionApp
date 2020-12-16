@@ -15,41 +15,28 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
-import com.google.android.material.button.MaterialButton
 import com.mczuba.blooddonorcompanion.BR
 import com.mczuba.blooddonorcompanion.R
 import com.mczuba.blooddonorcompanion.data.models.Donation
-import com.mczuba.blooddonorcompanion.databinding.FragmentRecordNewBinding
+import com.mczuba.blooddonorcompanion.data.models.Schedule
+import com.mczuba.blooddonorcompanion.databinding.FragmentRecordScheduleBinding
 import com.mczuba.blooddonorcompanion.util.DatePickerDialogFragment
-import com.mczuba.blooddonorcompanion.util.FoldableLayoutHelper
 import java.util.*
 
 
-class NewRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
-    val args: NewRecordFragmentArgs by navArgs()
-    var detailsExpanded: Boolean = false;
+class ScheduleRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+
     private val viewModel by lazy {
-        ViewModelProvider(this).get(NewRecordViewModel::class.java)
+        ViewModelProvider(this).get(ScheduleRecordViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentRecordNewBinding.inflate(inflater, container, false)
+        val binding = FragmentRecordScheduleBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
-
-        val buttonExpand = binding.root.findViewById<MaterialButton>(R.id.button_Expand)
-        val layoutExpand = binding.root.findViewById<View>(R.id.layout_details)
-        FoldableLayoutHelper(requireContext(), layoutExpand, buttonExpand, true)
-
-        if (args.donationArgument>=0) {
-            viewModel.setupEditMode(args.donationArgument)
-            binding.newrecordSubmit.text = getString(R.string.donation_submitedit)
-            binding.newrecordTitle.text = getString(R.string.donation_edit)
-        }
 
         binding.editDonationType.setAdapter(
             ArrayAdapter(
@@ -57,7 +44,7 @@ class NewRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 R.layout.support_simple_spinner_dropdown_item,
                 requireContext().resources.getStringArray(
                     R.array.donation_array
-                )
+                ).dropLast(1)
             )
         )
         binding.editDonationType.setOnItemClickListener { parent, view, position, id ->
@@ -76,61 +63,65 @@ class NewRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             false
         );
 
-        viewModel.donation.addOnPropertyChangedCallback(object :
+        binding.editNotification.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                R.layout.support_simple_spinner_dropdown_item,
+                requireContext().resources.getStringArray(
+                    R.array.notification_array
+                )
+            )
+        )
+        binding.editNotification.setOnItemClickListener { parent, view, position, id ->
+            run {
+                viewModel.setNotification(
+                    when (position) {
+                        0 -> Schedule.NotificationSetting.WEEK_BEFORE
+                        1 -> Schedule.NotificationSetting.THREE_DAYS_BEFORE
+                        2 -> Schedule.NotificationSetting.DAY_BEFORE
+                        else -> Schedule.NotificationSetting.NO_NOTIFICATION
+                    }
+                ) }
+        }
+        binding.editNotification.setText(
+            binding.editNotification.adapter.getItem(3).toString(),
+            false
+        );
+
+        viewModel.schedule.addOnPropertyChangedCallback(object :
             OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 when(propertyId) {
                     BR.type-> {
                         binding.editDonationType.setText(
-                            resources.getStringArray(R.array.donation_array)[viewModel.donation.getType()!!.ordinal],
+                            resources.getStringArray(R.array.donation_array)[viewModel.schedule.getType()!!.ordinal],
                             false
                         );
                     }
-                    BR.arm -> {
-                        binding.editUsedArm.setText(
-                            resources.getStringArray(R.array.arm_array)[viewModel.donation.getArm()!!.ordinal],
+                    BR.notification-> {
+                        binding.editNotification.setText(
+                            resources.getStringArray(R.array.notification_array)[viewModel.schedule.getNotification()!!.ordinal],
                             false
                         );
                     }
                 }
-
             }
         })
 
-        binding.editUsedArm.setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                R.layout.support_simple_spinner_dropdown_item,
-                requireContext().resources.getStringArray(
-                    R.array.arm_array
-                )
-            )
-        )
-        binding.editUsedArm.setText(binding.editUsedArm.adapter.getItem(2).toString(), false);
-        binding.editUsedArm.setOnItemClickListener { parent, view, position, id ->
-            run {
-                viewModel.setArmType(
-                    when (position) {
-                        0 -> Donation.ArmType.RIGHT
-                        1 -> Donation.ArmType.LEFT
-                        else -> Donation.ArmType.UNKNOWN
-                    }
-                ) }
-        }
-
         viewModel.completeState.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+
                 val action =
-                    NewRecordFragmentDirections.actionNewRecordFragmentToNavigationHistory()
+                    ScheduleRecordFragmentDirections.actionScheduleRecordFragmentToNavigationSummary()
                 Navigation.findNavController(binding.root).navigate(action)
             }
         })
 
-        binding.newrecordDate.setOnClickListener {
+        binding.openDatePicker.setOnClickListener {
             val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
             val newFragment: DialogFragment = DatePickerDialogFragment(
                 this,
-                viewModel.donation.getDate() ?: Date(),
+                viewModel.schedule.getDate() ?: Date(),
                 viewModel.getMinTime(),
                 viewModel.getMaxTime()
             )

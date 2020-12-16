@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.mczuba.blooddonorcompanion.vm.editors.ScheduleRecordViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/base_margin"
+                app:strokeColor="@color/colorPrimaryDark"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
+                        <!-- Title, secondary and supporting text -->
+                        <!-- Donation Type -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/donation_scheduletitle"
+                            android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:hint="@string/donation_type"
+                            app:startIconDrawable="@drawable/blood_bag">
+                            <AutoCompleteTextView
+                                android:singleLine="true"
+                                android:id="@+id/editDonationType"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <!-- Donation Date -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:hint="@string/donation_date"
+                            app:startIconDrawable="@drawable/calendar_star">
+                            <AutoCompleteTextView
+                                android:id="@+id/openDatePicker"
+                                android:singleLine="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="none"
+                                android:paddingStart="12dp"
+                                android:paddingEnd="8dp"
+                                android:text="@{@string/format_any(viewmodel.schedule.formattedDate)}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- NotificationSetting -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:hint="@string/notification"
+                            app:startIconDrawable="@drawable/baseline_notifications_active_black_24dp">
+                            <AutoCompleteTextView
+                                android:singleLine="true"
+                                android:id="@+id/editNotification"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="none" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Location -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:hint="@string/donation_location"
+                            app:startIconDrawable="@drawable/ic_baseline_location_on_24">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:singleLine="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="textAutoCorrect"
+                                android:text="@={viewmodel.schedule.location}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Note -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/donation_note"
+                            app:startIconDrawable="@drawable/file_document_edit_outline"
+                            android:layout_marginTop="8dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textLongMessage|textAutoCorrect|textMultiLine"
+                                android:singleLine="true"
+                                android:text="@={viewmodel.schedule.note}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                    <!-- Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingBottom="12dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/newrecord_submit"
+                            style="?attr/materialButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewmodel.submit()}"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
+                            android:text="@string/donation_submit" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

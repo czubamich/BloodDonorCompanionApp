@@ -7,7 +7,9 @@
     <string name="menu_info">Informacje</string>
 
     //Text
-    <string name="text_donated">Łącznie oddałeś/aś</string>
+    <string name="text_donated">Łącznie oddano</string>
+    <string name="donated_this_year">W tym roku</string>
+    <string name="left_to_next_donation">Do następnej donacji</string>
 
     //Text with params
     <string name="text_greeting">Hej %s,</string>
@@ -15,41 +17,37 @@
 
     //Plurals
     <plurals name="plural_daysLeft">
-        <!--
-             As a developer, you should always supply "one" and "other"
-             strings. Your translators will know which strings are actually
-             needed for their language. Always include %d in "one" because
-             translators will need to use %d for languages where "one"
-             doesn't mean 1 (as explained above).
-          -->
         <item quantity="one">dzień</item>
         <item quantity="few">dni</item>
         <item quantity="many">dni</item>
     </plurals>
 
-    //Number formats
-    <string name="format_any" translatable="false">%s</string>
-    <string name="format_number" translatable="false">%,d</string>
-
     //Arrays
     <string name="donation_total">Łącznie</string>
     <string name="donation_unknown">Nieznany</string>
-    <string name="donation_whole">Pełna</string>
+    <string name="donation_whole">Krew Pełna</string>
+    <string name="donation_wholeshort">Pełna</string>
     <string name="donation_plasma">Osocze</string>
+    <string name="donation_disqualified">Dyskwalifikacja</string>
     <string name="donation_platelets">Krwinki</string>
 
-    <string-array name="donation_array">
-        <item>Krew pełna</item>
-        <item>@string/donation_plasma</item>
-        <item>@string/donation_platelets</item>
-        <item>Dyskwalifikacja</item>
-    </string-array>
+    <string name="notification">Powiadomienie</string>
+    <string name="notification_none">Wyłączone</string>
+    <string name="notification_day">Dzień wcześniej</string>
+    <string name="notification_3days">3 dni wcześniej</string>
+    <string name="notification_week">Tydzień wcześniej</string>
 
     <string name="arm_string">Ramię</string>
     <string-array name="arm_array">
         <item>Prawe</item>
         <item>Lewe</item>
         <item>Nieznane</item>
+    </string-array>
+
+    <string-array name="arm_array_short">
+        <item>P</item>
+        <item>L</item>
+        <item>-</item>
     </string-array>
 
     <string name="gender_string">Płeć</string>
@@ -63,4 +61,35 @@
     //Controls
     <string name="control_expand">Rozwiń</string>
     <string name="control_shrink">Zwiń</string>
+
+    //Donation editor
+    <string name="donation_new">Nowa Dotacja</string>
+    <string name="donation_edit">Edycja</string>
+    <string name="donation_type">Rodzaj Dotacji</string>
+    <string name="donation_date">Data</string>
+    <string name="donation_location">Lokalizacja</string>
+    <string name="donation_note">Notatka</string>
+    <string name="donation_arm">Ramię</string>
+    <string name="donation_duration">Czas</string>
+    <string name="donation_amount">Ilość</string>
+    <string name="donation_hemoglobin">Hemoglobina</string>
+    <string name="donation_diastolic">Rozkurczowe</string>
+    <string name="donation_systolic">Skurczowe</string>
+    <string name="donation_submit">Dodaj</string>
+    <string name="donation_submitedit">Zapisz</string>
+    <string name="history_empty">-Pusto-</string>
+
+    //Menu
+    <string name="record_edit">Edytuj</string>
+    <string name="record_remove">Usuń</string>
+
+    //Schedule
+    <string name="donation_scheduletitle">Zaplanuj donacje</string>
+    <string name="schedule_upcomingtext">Nadchodzące donacje</string>
+    <string name="schedule_nothingyet">Jeszcze nic nie zaplanowano..</string>
+    <string name="schedule_in">Za</string>
+    <string name="schedule_button">Zaplanuj</string>
+    <string name="schedule_buttonremove">Usuń</string>
+
+
 </resources>

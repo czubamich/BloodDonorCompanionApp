@@ -20,6 +20,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/greet_navigation"
             tools:layout="@layout/fragment_greet_welcome" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

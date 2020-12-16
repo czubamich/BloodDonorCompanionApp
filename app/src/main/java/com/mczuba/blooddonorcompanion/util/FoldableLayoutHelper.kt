@@ -16,6 +16,18 @@ class FoldableLayoutHelper(val context: Context, val layout: View, val button: B
         }
     }
 
+    fun fold()
+    {
+        folded = true;
+        setupViews()
+    }
+
+    fun unfold()
+    {
+        folded = false;
+        setupViews()
+    }
+
     private fun setupViews() {
         layout.visibility = if (folded) View.GONE else View.VISIBLE
         button.text = if (folded)

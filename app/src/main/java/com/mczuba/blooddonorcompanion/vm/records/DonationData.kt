@@ -3,11 +3,12 @@ package com.mczuba.blooddonorcompanion.vm.records
 import android.content.Context
 import android.view.View
 import com.mczuba.blooddonorcompanion.R
-import com.mczuba.blooddonorcompanion.data.Donation
+import com.mczuba.blooddonorcompanion.data.models.Donation
 import java.text.SimpleDateFormat
 
 class DonationData(val context: Context, val donation: Donation, val header: Boolean = false)
 {
+    fun getDonationID() = donation.donationId
     fun getType() = donation.run{
         when(type){
             Donation.DonationType.WHOLE -> context.resources.getStringArray(R.array.donation_array)[0]
@@ -18,6 +19,13 @@ class DonationData(val context: Context, val donation: Donation, val header: Boo
         }
     }
     fun getAmount() = context.getString(R.string.format_number, donation.amount)
+    fun getArmShort() = donation.run{
+        when(arm){
+            Donation.ArmType.RIGHT -> context.resources.getStringArray(R.array.arm_array_short)[0]
+            Donation.ArmType.LEFT -> context.resources.getStringArray(R.array.arm_array_short)[1]
+            else -> context.resources.getStringArray(R.array.arm_array_short)[2]
+        }
+    }
     fun getArm() = donation.run{
         when(arm){
             Donation.ArmType.RIGHT -> context.resources.getStringArray(R.array.arm_array)[0]

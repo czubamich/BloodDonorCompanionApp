@@ -2,7 +2,7 @@
 
 package com.mczuba.blooddonorcompanion.util
 
-import com.mczuba.blooddonorcompanion.data.Donation
+import com.mczuba.blooddonorcompanion.data.models.Donation
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.random.Random

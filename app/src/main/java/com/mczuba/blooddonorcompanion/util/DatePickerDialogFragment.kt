@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import java.util.*
 
 
-class DatePickerDialogFragment(callback: Fragment, val date: Date?) : DialogFragment() {
+class DatePickerDialogFragment(callback: Fragment, val date: Date, val minDate: Date, val maxDate: Date) : DialogFragment() {
     private val mFragment: Fragment = callback
 
 
@@ -17,11 +17,10 @@ class DatePickerDialogFragment(callback: Fragment, val date: Date?) : DialogFrag
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
         val cal = Calendar.getInstance(TimeZone.getDefault())
-        cal.setTime(date)
+        cal.time = date
         val dialog = DatePickerDialog(requireContext(), mFragment as OnDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
-        dialog.datePicker.minDate = Date(cal.get(Calendar.YEAR)-1900-5, cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).time
-        dialog.datePicker.maxDate = Date(cal.get(Calendar.YEAR)-1900, cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).time
+        dialog.datePicker.minDate = minDate.time
+        dialog.datePicker.maxDate = maxDate.time
         return dialog
     }
-
 }

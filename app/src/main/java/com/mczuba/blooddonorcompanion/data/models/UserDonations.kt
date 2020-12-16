@@ -1,4 +1,4 @@
-package com.mczuba.blooddonorcompanion.data
+package com.mczuba.blooddonorcompanion.data.models
 
 import androidx.room.Embedded
 import androidx.room.Relation

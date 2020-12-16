@@ -9,6 +9,6 @@ object InjectorUtils {
     fun getUserRepository(application: Application) : UserRepository
     {
         val d = DonorDatabase.getDatabase(application)
-        return UserRepository(d.userDao(), d.donationDao())
+        return UserRepository(d.userDao(), d.donationDao(), d.scheduleDao())
     }
 }

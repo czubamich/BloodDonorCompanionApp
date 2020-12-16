@@ -5,10 +5,13 @@ import android.content.Context
 import androidx.lifecycle.*
 import com.hadilq.liveevent.LiveEvent
 import com.mczuba.blooddonorcompanion.R
-import com.mczuba.blooddonorcompanion.data.User
+import com.mczuba.blooddonorcompanion.data.models.User
 import com.mczuba.blooddonorcompanion.util.InjectorUtils
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.Month
+import java.time.ZoneOffset
 import java.util.*
 
 class GreetRegisterViewModel(application: Application) : AndroidViewModel(application) {
@@ -17,11 +20,10 @@ class GreetRegisterViewModel(application: Application) : AndroidViewModel(applic
     private val _openDatePicker = LiveEvent<Boolean>()
 
     val completeState: LiveData<Boolean> = _completeState
-    val openDatePicker: LiveData<Boolean> = _openDatePicker
     val name = MutableLiveData("")
     val bloodType = MutableLiveData(User.BloodType.Aplus)
     val gender = MutableLiveData(User.Gender.Male)
-    val birthday = MutableLiveData(Date())
+    val birthday = MutableLiveData(getMaxTime())
 
     fun pickDate() {
         _openDatePicker.value = true
@@ -40,6 +42,21 @@ class GreetRegisterViewModel(application: Application) : AndroidViewModel(applic
 
     fun setGender(type: User.Gender) {
         gender.postValue(type)
+    }
+
+    fun getName() = name.value
+    fun setName(value: String) {
+        name.postValue(value)
+    }
+
+    fun getMinTime(): Date {
+        return Date.from(LocalDateTime.of(1900, Month.JANUARY,1,0,0).atZone(ZoneOffset.ofHours(0)).toInstant())
+    }
+
+    fun getMaxTime(): Date {
+        var date = LocalDateTime.now()
+        date = date.minusYears(18)
+        return Date.from(date.atZone(ZoneOffset.ofHours(0)).toInstant())
     }
 
     fun submit()

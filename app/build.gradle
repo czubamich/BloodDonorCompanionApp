@@ -29,6 +29,11 @@ android {
     buildFeatures {
         dataBinding true
     }
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/roomSchemas".toString())
+        }
+    }
 }
 
 dependencies {
@@ -66,7 +71,7 @@ dependencies {
     api 'com.google.android.material:material:1.3.0-alpha03'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
-    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation "com.github.hadilq.liveevent:liveevent:$libVersion"
     implementation 'com.github.Spikeysanju:MotionToast:1.3.3.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
@@ -81,10 +86,5 @@ dependencies {
     androidTestImplementation 'androidx.test:core:1.3.0'
     androidTestImplementation 'androidx.test:runner:1.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-
-
-
-
 
 }

@@ -64,16 +64,13 @@
                             android:hint="Birthday"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                             <AutoCompleteTextView
+                                android:id="@+id/editBirthdate"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:inputType="none"/>
-                            <!--android:text="@{@string/format_any(viewmodel.formattedDate)}"
-                            android:onClick="@{() -> viewmodel.pickDate()}"-->
+                                android:inputType="none"
+                                android:text="@{@string/format_any(viewmodel.formattedDate)}"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <!-- Donation Type -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_marginTop="8dp"
                             android:layout_weight="1"
@@ -95,7 +92,6 @@
                                 android:layout_height="wrap_content"
                                 app:startIconDrawable="@drawable/water"
                                 android:hint="Blood Type"
-                                android:layout_marginLeft="8dp"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">>
                                 <AutoCompleteTextView
                                     android:id="@+id/editBloodType"
@@ -103,13 +99,14 @@
                                     android:layout_height="match_parent"
                                     android:inputType="none"/>
                             </com.google.android.material.textfield.TextInputLayout>
-                        </LinearLayout>
+
                     </LinearLayout>
                     <!-- Buttons -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginRight="4dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"

@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.mczuba.blooddonorcompanion.R
-import com.mczuba.blooddonorcompanion.data.User
+import com.mczuba.blooddonorcompanion.data.models.User
 import com.mczuba.blooddonorcompanion.databinding.FragmentGreetRegisterBinding
+import com.mczuba.blooddonorcompanion.util.DatePickerDialogFragment
 import kotlinx.coroutines.launch
 
 class GreetRegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
@@ -42,6 +45,17 @@ class GreetRegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             run {
                 viewModel.setBloodType(User.BloodType.values()[position])
             }
+        }
+
+        binding.editBirthdate.setOnClickListener {
+            val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
+            val newFragment: DialogFragment = DatePickerDialogFragment(
+                this,
+                viewModel.birthday.value!!,
+                viewModel.getMinTime(),
+                viewModel.getMaxTime()
+            )
+            newFragment.show(ft, "dialog")
         }
 
         return binding.root

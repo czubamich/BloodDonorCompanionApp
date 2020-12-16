@@ -1,8 +1,9 @@
 package com.mczuba.blooddonorcompanion.util
 
 import androidx.room.TypeConverter
-import com.mczuba.blooddonorcompanion.data.Donation
-import com.mczuba.blooddonorcompanion.data.User
+import com.mczuba.blooddonorcompanion.data.models.Donation
+import com.mczuba.blooddonorcompanion.data.models.Schedule
+import com.mczuba.blooddonorcompanion.data.models.User
 import java.util.*
 
 
@@ -55,4 +56,28 @@ object Converters {
     @TypeConverter
     @JvmStatic
     fun fromArm(value: Donation.ArmType) = value.name
+
+    @TypeConverter
+    @JvmStatic
+    fun toNotificationSetting(value: String) = enumValueOf<Schedule.NotificationSetting>(value)
+
+    @TypeConverter
+    @JvmStatic
+    fun fromNotificationSetting(value: Schedule.NotificationSetting) = value.name
+
+    fun fromDonationTypeToDays(type: Donation.DonationType, prevtype: Donation.DonationType) =
+        when(prevtype) {
+        Donation.DonationType.WHOLE -> when(type) {
+            Donation.DonationType.PLATELETS -> 56
+            Donation.DonationType.PLASMA -> 28
+            else -> 56
+        }
+        Donation.DonationType.PLASMA -> when(type) {
+            Donation.DonationType.WHOLE -> 14
+            Donation.DonationType.PLATELETS -> 28
+            else -> 14
+        }
+        Donation.DonationType.PLATELETS -> 28
+        Donation.DonationType.DISQUALIFIED -> 14
+    }
 }

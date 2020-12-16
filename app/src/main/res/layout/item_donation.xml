@@ -111,32 +111,36 @@
                         android:background="?android:attr/listDivider" />
                     <TextView
                         android:layout_marginVertical="@dimen/separation_margin"
-                        android:id="@+id/item_donation_date"
+                        android:id="@+id/item_donation_note"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         tools:text="Comment"
                         android:text="@{donation.note}"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <HorizontalScrollView
+                        android:scrollbars="none"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp">
                         <LinearLayout
-                            android:layout_gravity="center"
+                            android:layout_gravity="left"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <!-- Duration -->
                             <ImageView
-                                android:layout_marginLeft="@dimen/separation_margin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 app:tint="?android:attr/textColorSecondary"
                                 android:textAlignment="center"
                                 android:src="@drawable/timer_outline"/>
                             <TextView
+                                android:paddingLeft="4dp"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 tools:text="12min"
+                                android:gravity="center_vertical"
                                 android:text="@{donation.duration}"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary" />
@@ -148,13 +152,16 @@
                                 app:tint="?android:attr/textColorSecondary"
                                 android:textAlignment="center"
                                 android:src="@drawable/hand_right"/>
+
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="Right"
-                                android:text="@{donation.arm}"
+                                android:layout_height="match_parent"
+                                android:paddingLeft="4dp"
+                                android:gravity="center_vertical"
+                                android:text="@{donation.armShort}"
                                 android:textAppearance="?attr/textAppearanceBody2"
-                                android:textColor="?android:attr/textColorSecondary" />
+                                android:textColor="?android:attr/textColorSecondary"
+                                tools:text="Right" />
                             <!-- xd -->
                             <ImageView
                             android:layout_marginLeft="@dimen/separation_margin"
@@ -166,7 +173,8 @@
                             <TextView
                                 android:layout_marginLeft="6dp"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
                                 tools:text="15.2"
                                 android:text="@{donation.hemoglobin}"
                                 android:textAppearance="?attr/textAppearanceBody2"
@@ -181,14 +189,16 @@
                                 android:src="@drawable/stethoscope"/>
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="4dp"
                                 tools:text="80/120"
                                 android:text="@{donation.bloodPressure}"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary" />
                             <!-- xd -->
                         </LinearLayout>
-                    </ScrollView>
+                    </HorizontalScrollView>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
