@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private val navChangedListener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
         when(destination.id) {
-            R.id.navigation_summary -> fab.visibility = View.VISIBLE
+            R.id.summaryFragment -> fab.visibility = View.VISIBLE
             R.id.historyFragment -> fab.visibility = View.VISIBLE
             else -> fab.visibility = View.INVISIBLE
         }
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             else -> navView.visibility = View.VISIBLE;
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             when(navController.currentDestination?.id)
             {
-                R.id.navigation_summary -> navController.navigate(SummaryFragmentDirections.actionNavigationSummaryToNewRecordFragment())
+                R.id.summaryFragment -> navController.navigate(SummaryFragmentDirections.actionNavigationSummaryToNewRecordFragment())
                 R.id.historyFragment ->  navController.navigate(HistoryFragmentDirections.actionHistoryFragmentToNewRecordFragment())
                 else -> navController.navigate(R.id.newRecordFragment)
             }
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 overridePendingTransition(R.anim.nav_default_pop_enter_anim, R.anim.nav_default_pop_exit_anim)
             } else {
                 val direction = BlankFragmentDirections.actionBlankFragmentToNavigationSummary()
-                navController.graph.startDestination = R.id.navigation_summary;
+                navController.graph.startDestination = R.id.summaryFragment;
                 navView.visibility = View.VISIBLE
                 navController.navigate(direction)
             }

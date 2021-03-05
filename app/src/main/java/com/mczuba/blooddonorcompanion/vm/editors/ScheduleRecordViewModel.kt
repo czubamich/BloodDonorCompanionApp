@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import com.mczuba.blooddonorcompanion.data.ScheduleLiveData
-import com.mczuba.blooddonorcompanion.data.UserRepository
+import com.mczuba.blooddonorcompanion.data.DonorRepository
 import com.mczuba.blooddonorcompanion.data.models.Donation
 import com.mczuba.blooddonorcompanion.data.models.Schedule
 import com.mczuba.blooddonorcompanion.util.InjectorUtils
@@ -15,7 +15,7 @@ import java.time.ZoneOffset
 import java.util.*
 
 class ScheduleRecordViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: UserRepository = InjectorUtils.getUserRepository(application)
+    private val repository: DonorRepository = InjectorUtils.getUserRepository(application)
 
     private val _completeState = LiveEvent<Boolean>()
 

@@ -1,5 +1,7 @@
 package com.mczuba.blooddonorcompanion.vm
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,7 @@ class InfoFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+        binding.fragment = this
 
         val buttonExpand = binding.root.findViewById<MaterialButton>(R.id.button_Expand)
         val layoutExpand = binding.root.findViewById<View>(R.id.layout_details)
@@ -33,5 +36,13 @@ class InfoFragment : Fragment() {
         FoldableLayoutHelper(requireContext(), layoutExpand2, buttonExpand2, true)
 
         return binding.root
+    }
+
+    fun link()
+    {
+        val url = "https://krew.info/zapasy/"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
     }
 }

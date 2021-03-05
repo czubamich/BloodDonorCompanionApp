@@ -30,27 +30,35 @@ class HistoryFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
 
-        val donationObserver = Observer<List<Donation>> { donations ->
-            if(binding.rvHistory.adapter!=null) {
-                return@Observer
-            }
-            val donations = viewModel.donations
+        return binding.root
+    }
 
-            if (!donations.value!!.isEmpty())
-                binding.fragmentHistoryEmpty.visibility = View.INVISIBLE
-
-            donationData = donationListToDonationData(ArrayList(donations.value))
-
-            val adapter = DonationAdapter(requireContext(), donationData)
-            registerForContextMenu(binding.rvHistory)
-
-            binding.rvHistory.adapter = adapter
-            binding.rvHistory.layoutManager = GridLayoutManager(requireContext(), 1)
-        }
+    override fun onResume() {
+        super.onResume()
 
         viewModel.donations.observe(viewLifecycleOwner, donationObserver)
+        viewModel.updateDonations()
+    }
 
-        return binding.root
+    private val donationObserver = Observer<List<Donation>> { donations ->
+        if(binding.rvHistory.adapter!=null) {
+            donationData = donationListToDonationData(ArrayList(donations))
+            val adapter = DonationAdapter(requireContext(), donationData)
+            binding.rvHistory.adapter = adapter
+            return@Observer
+        }
+        val donations = viewModel.donations
+
+        if (!donations.value!!.isEmpty())
+            binding.fragmentHistoryEmpty.visibility = View.INVISIBLE
+
+        donationData = donationListToDonationData(ArrayList(donations.value))
+
+        val adapter = DonationAdapter(requireContext(), donationData)
+        registerForContextMenu(binding.rvHistory)
+
+        binding.rvHistory.adapter = adapter
+        binding.rvHistory.layoutManager = GridLayoutManager(requireContext(), 1)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -67,6 +75,8 @@ class HistoryFragment : Fragment() {
                 }
 
                 viewModel.removeDonation(adapter.selectedDonation!!)
+                if(viewModel.donations.value.isNullOrEmpty())
+                    binding.fragmentHistoryEmpty.visibility = View.VISIBLE
             }
             R.id.record_edit -> {
                 val adapter = (binding.rvHistory.adapter as DonationAdapter)

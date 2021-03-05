@@ -27,7 +27,7 @@ import java.util.*
 
 
 class NewRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
-    val args: NewRecordFragmentArgs by navArgs()
+    private val args: NewRecordFragmentArgs by navArgs()
     var detailsExpanded: Boolean = false;
     private val viewModel by lazy {
         ViewModelProvider(this).get(NewRecordViewModel::class.java)
@@ -120,9 +120,7 @@ class NewRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         viewModel.completeState.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                val action =
-                    NewRecordFragmentDirections.actionNewRecordFragmentToNavigationHistory()
-                Navigation.findNavController(binding.root).navigate(action)
+                Navigation.findNavController(binding.root).popBackStack()
             }
         })
 

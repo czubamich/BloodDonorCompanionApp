@@ -7,7 +7,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import com.mczuba.blooddonorcompanion.data.DonationLiveData
-import com.mczuba.blooddonorcompanion.data.UserRepository
+import com.mczuba.blooddonorcompanion.data.DonorRepository
 import com.mczuba.blooddonorcompanion.data.models.Donation
 import com.mczuba.blooddonorcompanion.util.InjectorUtils
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ import java.time.ZoneOffset
 import java.util.*
 
 class NewRecordViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: UserRepository = InjectorUtils.getUserRepository(application)
+    private val repository: DonorRepository = InjectorUtils.getUserRepository(application)
 
     private val _completeState = LiveEvent<Boolean>()
 

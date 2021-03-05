@@ -42,7 +42,7 @@
     <string name="donation_wholeshort">Whole</string>
     <string name="donation_plasma">Plasma</string>
     <string name="donation_platelets">Platelets</string>
-    <string name="donation_disqualified">Platelets</string>
+    <string name="donation_disqualified">Disqualified</string>
     <string name="donation_unknown">Unknown</string>
 
     <string name="notification">Notification</string>
@@ -122,4 +122,34 @@
     <string name="schedule_in">In</string>
     <string name="schedule_button">Schedule</string>
     <string name="schedule_buttonremove">Remove</string>
+    <string name="greet_begin">Begin</string>
+    <string name="greet_allready">All is up!</string>
+    <string name="greet_youcanbegin">You\'re ready to go!</string>
+    <string name="info_bloodbanks">Blood Banks Status</string>
+    <string name="text_blooddonorinfo">Blood Donor Info</string>
+    <string name="text_welcomegreeting">Welcome to BloodApp!</string>
+    <string name="twoja_historia_krwiodawstwa_pod_r_k">Your blood donations at your fingertips</string>
+    <string name="text_infopreparation">• be well rested\n• drink about 2 liters of fluid during the day before donation\n• eat an easily digestible meal before donating blood\n• avoid excessive physical exertion on the day of donation\n• reduce cigarette smoking\n• Don\'t come to donate blood after consuming alcohol or other mood-altering substances</string>
+    <string name="text_infoprepare">How do I prepare?</string>
+    <string name="newdonor_createnew">Create a New Donor</string>
+
+    <string name="user_name">Name</string>
+    <string name="user_birthday">Birthday</string>
+    <string name="user_gender">Gender</string>
+    <string name="user_notelocal">Note: All data is stored locally.</string>
+    <string name="user_submit">Submit</string>
+
+    //Greeting
+    <string-array name="onboarding_titles">
+        <item>Welcome to BloodApp!</item>
+        <item>Zapisuj postępy</item>
+        <item>Planuj donacje</item>
+    </string-array>
+
+    <string-array name="onboarding_text">
+        <item>Twoja historia krwiodawstwa pod ręką</item>
+        <item>Notuj wszelkie uwagi</item>
+        <item>Zawsze pamiętaj o przygotowaniu się</item>
+    </string-array>
+
 </resources>

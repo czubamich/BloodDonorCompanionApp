@@ -91,5 +91,20 @@
     <string name="schedule_button">Zaplanuj</string>
     <string name="schedule_buttonremove">Usuń</string>
 
+    <string name="text_blooddonorinfo">Informacje Krwiodawcy</string>
+    <string name="greet_begin">Zaczynamy</string>
+    <string name="greet_allready">Wszystko gotowe!</string>
+    <string name="greet_youcanbegin">Możesz już zaczynać!</string>
+    <string name="info_bloodbanks">Stany Banków Krwi</string>
+    <string name="twoja_historia_krwiodawstwa_pod_r_k">Twoja historia krwiodawstwa zawsze pod ręką!</string>
+    <string name="text_infopreparation">• bądź wyspanym\n• w ciagu doby poprzedzajacej oddanie krwi wypić około 2l płynów\n• zjedz lekkostrawny posiłek przed oddaniem krwi\n• unikaj nadmiernego fizycznego wysiłku w dniu oddania\n• ogranicz palenie papierosów\n• nie przychodź do oddania krwi po spożyciu alkoholu lub innych środków zmeiniajacych nastrój</string>
+    <string name="text_infoprepare">Jak się przygotować?</string>
+    <string name="newdonor_createnew">Dodaj nowego dawcę</string>
+    <string name="user_name">Imię</string>
+    <string name="user_birthday">Data urodzin</string>
+    <string name="user_gender">Płeć</string>
+    <string name="user_notelocal">Dane są przechowywane lokalnie:</string>
+    <string name="user_submit">Dalej</string>
+
 
 </resources>

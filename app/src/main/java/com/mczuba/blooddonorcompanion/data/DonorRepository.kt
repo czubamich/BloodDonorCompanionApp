@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.*
 
-class UserRepository(
+class DonorRepository(
     private val userDao: UserDao,
     private val donationDao: DonationDao,
     private val scheduleDao: ScheduleDao

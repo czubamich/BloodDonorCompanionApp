@@ -7,9 +7,6 @@
         <variable
             name="viewmodel"
             type="com.mczuba.blooddonorcompanion.vm.SummaryViewModel" />
-        <variable
-            name="schedulemodel"
-            type="com.mczuba.blooddonorcompanion.vm.SummaryScheduleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -270,7 +267,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="12dp"
-                                    android:text="@{schedulemodel.scheduleType}"
+                                    android:text="@{viewmodel.scheduleType}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                                     android:textColor="@color/colorPrimary"
                                     tools:text="Whole Blood" />
@@ -292,7 +289,7 @@
                                     android:paddingTop="0dp"
                                     android:layout_marginLeft="4dp"
                                     tools:text="11"
-                                    android:text="@{@string/format_number(schedulemodel.daysTo)}"
+                                    android:text="@{@string/format_number(viewmodel.daysTo)}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                                     android:textColor="@color/colorPrimary"/>
                                 <TextView
@@ -301,7 +298,7 @@
                                     android:layout_marginTop="2dp"
                                     android:layout_marginLeft="4dp"
                                     tools:text="days"
-                                    android:text="@{@plurals/plural_daysLeft(schedulemodel.daysTo)}"
+                                    android:text="@{@plurals/plural_daysLeft(viewmodel.daysTo)}"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                                     android:textColor="?android:attr/textColorSecondary"/>
                                 </LinearLayout>
@@ -310,7 +307,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="16dp"
-                                    android:text="@{schedulemodel.formattedDate}"
+                                    android:text="@{viewmodel.formattedDate}"
                                     tools:text="cz., 28 sty 2021"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                     android:textColor="?android:attr/textColorSecondary"/>
@@ -333,7 +330,7 @@
                                         android:layout_marginLeft="16dp"
                                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                         android:textColor="?android:attr/textColorSecondary"
-                                        android:text="@{schedulemodel.schedule.location}"
+                                        android:text="@{viewmodel.schedule.location}"
                                         tools:text="Location"/>
                                 </LinearLayout>
                                 <!-- Note -->
@@ -356,7 +353,7 @@
                                         android:layout_marginLeft="16dp"
                                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                         android:textColor="?android:attr/textColorSecondary"
-                                        android:text="@{schedulemodel.schedule.note}"
+                                        android:text="@{viewmodel.schedule.note}"
                                         tools:text="Notatka"/>
                                 </LinearLayout>
                             </LinearLayout>
@@ -383,7 +380,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
                                 android:text="@string/schedule_buttonremove"
-                                android:onClick="@{()->schedulemodel.removeSchedule()}"
+                                android:onClick="@{()->viewmodel.removeSchedule()}"
                                 style="?attr/borderlessButtonStyle"/>
                         </LinearLayout>
                     </LinearLayout>

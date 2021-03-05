@@ -2,8 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="viewmodel"
-            type="com.mczuba.blooddonorcompanion.vm.greeting.GreetWelcomeViewModel" />
         <variable name="fragment"
             type="com.mczuba.blooddonorcompanion.vm.greeting.GreetWelcomeFragment" />
     </data>
@@ -13,44 +11,48 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <View
-                android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent">>
+            <ImageView
+                android:id="@+id/on_boarding_icon"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="192dp"
+                android:src="@drawable/blood_bag"
+                app:tint="@color/colorPrimary" />
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="fill_parent"
+                android:id="@+id/on_boarding_textbig"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Hello"
+                android:textAlignment="center"
+                android:text="@string/text_welcomegreeting"
                 android:layout_weight="0"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-            <LinearLayout
+            <TextView
+                android:id="@+id/on_boarding_textsmall"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:gravity="center|bottom"
-                android:orientation="vertical" >
-
-                <Button
-                    android:id="@+id/button1"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="145dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|right"
-                    android:layout_margin="16dp"
-                    android:onClick="@{() -> fragment.click()}"
-                    android:text="Let's go" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/twoja_historia_krwiodawstwa_pod_r_k"
+                android:layout_weight="0"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
-
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|right"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> fragment.click()}"
+            android:text="Let's go"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

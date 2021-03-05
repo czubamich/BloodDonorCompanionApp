@@ -44,11 +44,6 @@ class GreetRegisterViewModel(application: Application) : AndroidViewModel(applic
         gender.postValue(type)
     }
 
-    fun getName() = name.value
-    fun setName(value: String) {
-        name.postValue(value)
-    }
-
     fun getMinTime(): Date {
         return Date.from(LocalDateTime.of(1900, Month.JANUARY,1,0,0).atZone(ZoneOffset.ofHours(0)).toInstant())
     }

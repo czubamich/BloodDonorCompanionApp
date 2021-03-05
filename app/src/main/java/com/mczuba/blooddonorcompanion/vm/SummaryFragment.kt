@@ -13,30 +13,27 @@ import com.mczuba.blooddonorcompanion.databinding.FragmentSummaryBinding
 import kotlinx.android.synthetic.main.fragment_summary.*
 
 class SummaryFragment : Fragment() {
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(SummaryViewModel::class.java)
-    }
-    private val scheduleModel by lazy {
-        ViewModelProvider(this).get(SummaryScheduleViewModel::class.java)
-    }
+    private lateinit var viewModel: SummaryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+
         val binding = FragmentSummaryBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
+        viewModel = ViewModelProvider(this).get(SummaryViewModel::class.java)
         binding.viewmodel = viewModel
-        binding.schedulemodel = scheduleModel
         val navController = findNavController()
 
         binding.btnScheduleDonation.setOnClickListener {
             val direction = SummaryFragmentDirections.actionNavigationSummaryToScheduleRecordFragment()
-            navController.graph.startDestination = R.id.navigation_summary;
+            navController.graph.startDestination = R.id.summaryFragment;
             navController.navigate(direction)
         }
 
-        scheduleModel.schedule.observe( viewLifecycleOwner, Observer() {
+        viewModel.schedule.observe( viewLifecycleOwner, Observer() {
             if(it.scheduleId == -1) {
                 binding.textScheduleNone.visibility = View.VISIBLE
                 binding.layoutScheduleDetails.visibility = View.GONE
@@ -61,5 +58,10 @@ class SummaryFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel?.updateData()
     }
 }

@@ -110,10 +110,7 @@ class ScheduleRecordFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         viewModel.completeState.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-
-                val action =
-                    ScheduleRecordFragmentDirections.actionScheduleRecordFragmentToNavigationSummary()
-                Navigation.findNavController(binding.root).navigate(action)
+                Navigation.findNavController(binding.root).popBackStack()
             }
         })
 

@@ -21,14 +21,9 @@ class GreetFinalFragment : Fragment() {
     ): View? {
         val binding = FragmentGreetFinalBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewmodel = viewModel
         binding.fragment = this
 
         return binding.root
-    }
-
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(GreetFinalViewModel::class.java)
     }
 
     fun click() {

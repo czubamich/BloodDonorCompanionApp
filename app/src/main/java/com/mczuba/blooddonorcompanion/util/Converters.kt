@@ -70,6 +70,7 @@ object Converters {
         Donation.DonationType.WHOLE -> when(type) {
             Donation.DonationType.PLATELETS -> 56
             Donation.DonationType.PLASMA -> 28
+            Donation.DonationType.DISQUALIFIED -> 14
             else -> 56
         }
         Donation.DonationType.PLASMA -> when(type) {

@@ -4,17 +4,16 @@ import android.app.Application
 import androidx.databinding.Observable
 import androidx.databinding.Observable.OnPropertyChangedCallback
 import androidx.databinding.ObservableInt
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.mczuba.blooddonorcompanion.R
 import com.mczuba.blooddonorcompanion.data.DonationSummary
-import com.mczuba.blooddonorcompanion.data.UserRepository
+import com.mczuba.blooddonorcompanion.data.DonorRepository
 import com.mczuba.blooddonorcompanion.data.models.Donation
+import com.mczuba.blooddonorcompanion.data.models.Schedule
 import com.mczuba.blooddonorcompanion.data.models.User
 import com.mczuba.blooddonorcompanion.util.InjectorUtils
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.temporal.ChronoUnit
@@ -22,7 +21,7 @@ import java.util.*
 
 
 class SummaryViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: UserRepository = InjectorUtils.getUserRepository(application)
+    private val repository: DonorRepository = InjectorUtils.getUserRepository(application)
     private var _user = MutableLiveData<User>()
     private lateinit var _totalSummary : DonationSummary
     private lateinit var _wholeSummary : DonationSummary
@@ -48,7 +47,7 @@ class SummaryViewModel(application: Application) : AndroidViewModel(application)
     val checkedBtnObs = ObservableInt(R.id.summary_chipgroup)
     val daysLeft: LiveData<Int> = _daysLeft
 
-    init {
+    fun updateData() {
         viewModelScope.launch {
             val users = repository.readAllUsers()
             val user = users.first()
@@ -81,6 +80,10 @@ class SummaryViewModel(application: Application) : AndroidViewModel(application)
                 _daysLeftPlatelets = ChronoUnit.DAYS.between(today, thenPlate).toInt()+1
             }
 
+            getSchedule()
+
+            _currentSummary.postValue(_totalSummary)
+            _yearlySummary.postValue(_totalSummaryYear)
             checkedBtnObs.set(R.id.summary_chiptotal)
         }
 
@@ -112,5 +115,56 @@ class SummaryViewModel(application: Application) : AndroidViewModel(application)
                 )
             }
         })
+    }
+
+    private val _schedule = MutableLiveData<Schedule>(getDefaultSchedule())
+    private val _daysTo = MutableLiveData<Int>(0)
+
+    val schedule: LiveData<Schedule> = _schedule
+    val daysTo: LiveData<Int> = _daysTo
+
+    val formattedDate = Transformations.map(schedule) {
+        SimpleDateFormat("EE, d MMM yyy").format(it.date)
+    }
+
+    val scheduleType = Transformations.map(schedule) {
+        when(it.type) {
+            Donation.DonationType.WHOLE -> application.resources.getString(R.string.donation_whole)
+            Donation.DonationType.PLASMA -> application.resources.getString(R.string.donation_plasma)
+            Donation.DonationType.PLATELETS -> application.resources.getString(R.string.donation_platelets)
+            else -> application.resources.getString(R.string.donation_whole)
+        }
+    }
+
+    fun removeSchedule() {
+        val scheduleToRemove = _schedule.value
+        _schedule.postValue(getDefaultSchedule())
+        _daysTo.postValue(0)
+
+        viewModelScope.launch {
+            scheduleToRemove?.run { repository.removeSchedule(this) }
+            getSchedule()
+        }
+    }
+
+    suspend fun getSchedule() {
+        repository.readUserSchedules(0).sortedBy { x -> x.date }.firstOrNull()?.run {
+            val then = this.date.toInstant().atZone(ZoneOffset.ofHours(0)).toLocalDateTime()
+            _daysTo.postValue(ChronoUnit.DAYS.between(LocalDateTime.now(), then).toInt()+1)
+
+            _schedule.postValue(this)
+        }
+    }
+
+    private fun getDefaultSchedule(): Schedule {
+        return Schedule(
+            -1,
+            0,
+            Donation.DonationType.WHOLE,
+            Date(),
+            "",
+            "",
+            Schedule.NotificationSetting.THREE_DAYS_BEFORE
+        )
     }
 }
