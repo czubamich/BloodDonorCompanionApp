@@ -42,7 +42,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Screen Shot][screenshot.png]](https://github.com/czubamich/BloodDonorCompanionApp/blob/master/screenshot.png)
+![Product Screen Shot](https://github.com/czubamich/BloodDonorCompanionApp/blob/master/screenshot.png)
 
 ### Built With
 
